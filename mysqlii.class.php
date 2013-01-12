@@ -1,7 +1,7 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: amirhossein
+ * MySQLi Improvement
+ * Author: Amir Hossein Hodjati Pour <me@amir-hossein.com>
  * Date: 13/1/12
  * Time: 19:19
  */
@@ -147,40 +147,81 @@ class MySQLii {
         return call_user_func_array(array($this, 'exec_multiple'), $args);
     }
 
-
+    /**
+     * Run a query
+     *
+     * @param string $sql SQL Statement
+     * @return MySQLiiStatement instance
+     */
     public function query($sql) {
         if (isset($this->mysqli)) {
-            $result = $this->mysqli->query($sql);
+            //$result = $this->mysqli->query($sql);
         }
     }
 
+    /**
+     * Run multiple queries
+     *
+     * @params string SQL queries. They will be separated by default mysql delimiter
+     * @return MySQLiiStatement instance
+     */
     public function query_multiple() {
         if (isset($this->mysqli)) {
 
         }
     }
 
+    /**
+     * Alias of self::query_multiple()
+     */
     public function multiple_query() {
         $args = func_get_args();
         return call_user_func_array(array($this, 'query_multiple'), $args);
     }
 
+    /**
+     * Create a new prepared statement
+     *
+     * @param string sql query
+     * @params mixed bindings
+     * @return MySQLiiStatement instance
+     */
     public function prepare() {
 
     }
 
+    /**
+     * Run query and return first row of result
+     *
+     * @param $sql SQL statement
+     * @param array $bindings Binding for prepared statement
+     * @return First row of result or NULL
+     */
     public function fetch($sql, $bindings=array()) {
 
     }
 
+    /**
+     * Run query and return all rows of result
+     *
+     * @param $sql SQL statement
+     * @param array $bindings Binding for prepared statement
+     * @return all rows of result or NULL
+     */
     public function fetchAll($sql, $bindings=array()) {
 
     }
 
+    /**
+     * Run query and return first column of first row of result
+     *
+     * @param $sql SQL statement
+     * @param array $bindings Binding for prepared statement
+     * @return First column of first row of result
+     */
     public function fetchOne($sql, $bindings=array()) {
 
     }
-
 
     /**
      * Start Transaction and set autocommit to off
