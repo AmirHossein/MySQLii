@@ -31,9 +31,15 @@ class MySQLii {
      * @var string MySQLii last error
      */
     protected $_internal_error = '';
-
+    /**
+     * @access protected
+     * @var string MySQL default delimiter used by multiple queries
+     */
     protected $query_delimiter = ';';
-
+    /**
+     * @access protected
+     * @var bool Check transaction status
+     */
     protected $inTransaction = false;
 
 
@@ -395,19 +401,45 @@ class MySQLii {
         return $this->_internal_error;
     }
 
-
+    /**
+     * Return specified value if first parameter is NULL else first parameter
+     *
+     * @static
+     * @param mixed $test Value to check
+     * @param mixed $value Value to return when first parameter is NULL
+     * @return mixed
+     */
     public static function ifNull($test, $value) {
         return isset($test) ? $test : $value;
     }
 
+    /**
+     * Return specified value if first parameter is empty else first parameter
+     *
+     * @static
+     * @param mixed $test Value to check
+     * @param mixed $value Value to return when first parameter is empty
+     * @return mixed
+     */
     public static function ifEmpty($test, $value) {
         return empty($test) ? $value : $test;
     }
 
+    /**
+     * Set default MySQL delimiter
+     *
+     * @param $sql_delimiter default MySQL delimiter
+     * @return void
+     */
     public function setQueryDelimiter($sql_delimiter) {
         $this->query_delimiter = $sql_delimiter;
     }
 
+    /**
+     * Get default MySQL delimiter
+     *
+     * @return string Default MySQL delimiter
+     */
     public function getQueryDelimiter() {
         return $this->query_delimiter;
     }
